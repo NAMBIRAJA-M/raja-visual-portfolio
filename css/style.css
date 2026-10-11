@@ -336,6 +336,9 @@ video {
   overflow: hidden;
   /* Establish stacking context without affecting z-index painting */
   isolation: isolate;
+  perspective: 1400px;
+  --mx: 70%;
+  --my: 42%;
   border-bottom: 1px solid var(--line);
   /* Avoid 100vw horizontal scroll bug (scrollbar included) */
   width: 100%;
@@ -354,8 +357,16 @@ video {
 /* Inner wrapper carries the entrance animation; parallax transform goes on parent */
 .hero-bg-inner {
   width: 100%;
-  height: 100%;
-  animation: heroBgEntrance 1.4s var(--ease) both;
+  height: 120%;
+  margin-top: 0%;
+  margin-left: 10%;
+  animation: heroBgEntrance 1.6s var(--ease) both;
+}
+
+.hero-entered .hero-bg-inner {
+  animation:
+    heroBgEntrance 1.6s var(--ease) both,
+    heroKenBurns 26s ease-in-out 1.6s infinite alternate;
 }
 
 .hero-bg-img {
@@ -364,19 +375,28 @@ video {
   object-fit: cover;
   object-position: right 36%;
   /* Vivid colour pop — no grayscale! */
-  filter: contrast(1.08) brightness(0.88);
-  opacity: 0.88;
+  filter: contrast(1.12) saturate(1.08) brightness(0.86);
+  opacity: 0.92;
   display: block;
 }
 
 @keyframes heroBgEntrance {
   from {
-    transform: scale(1.12);
+    transform: scale(1.16);
     opacity: 0;
   }
   to {
     transform: scale(1.0);
     opacity: 1;
+  }
+}
+
+@keyframes heroKenBurns {
+  from {
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+  to {
+    transform: scale(1.1) translate3d(-2.4%, 1.6%, 0);
   }
 }
 
@@ -401,7 +421,7 @@ video {
     /* Subtle red rim light atmosphere */
     radial-gradient(
       ellipse 65% 55% at 85% 42%,
-      rgba(242, 43, 43, 0.15) 0%,
+      rgba(242, 43, 43, 0.22) 0%,
       transparent 70%
     ),
     /* Bottom-to-top: solid at footer for scroll cue readability */
@@ -419,44 +439,150 @@ video {
     );
 }
 
+/* Mouse-follow cinematic light leak */
+.hero-light-leak {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      circle 340px at var(--mx) var(--my),
+      rgba(242, 43, 43, 0.2) 0%,
+      rgba(80, 180, 255, 0.06) 38%,
+      transparent 70%
+    );
+  mix-blend-mode: screen;
+  opacity: 0.85;
+}
+
 /* --- Layer 3: Large outlined background text (parallax: horizontal drift) --- */
 
 .hero-bg-text-layer {
   position: absolute;
-  inset: 0;
+  left: -8%;
+  right: -8%;
+  top: 16%;
   z-index: -1;
   display: flex;
   align-items: center;
-  justify-content: center;
   will-change: transform;
   pointer-events: none;
   overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent 0%, transparent 18%, #000 48%, #000 90%, transparent);
+}
+
+.hero-bg-text-layer--alt {
+  top: auto;
+  bottom: 6%;
+  opacity: 0.4;
+}
+
+.hero-bg-text-track {
+  display: flex;
+  width: max-content;
+  animation: heroMarquee 42s linear infinite;
+  opacity: 0;
+}
+
+.hero-entered .hero-bg-text-track {
+  opacity: 1;
+}
+
+.hero-bg-text-track--rev {
+  animation: heroMarqueeRev 56s linear infinite;
 }
 
 .hero-bg-text {
   font-family: var(--font-heading);
-  font-size: clamp(4rem, 12vw, 14rem);
+  font-size: clamp(4.2rem, 13vw, 15rem);
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   white-space: nowrap;
   color: transparent;
-  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.08);
-  opacity: 0;
-  animation: heroBgTextIn 1.6s var(--ease) 0.6s forwards;
+  -webkit-text-stroke: 1.2px rgba(255, 255, 255, 0.09);
   user-select: none;
+  padding-right: 0.35em;
 }
 
-@keyframes heroBgTextIn {
-  from {
-    opacity: 0;
-    transform: translateX(40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+.hero-bg-text-layer--alt .hero-bg-text {
+  font-size: clamp(2.2rem, 6.5vw, 7.2rem);
+  -webkit-text-stroke: 1px rgba(242, 43, 43, 0.18);
 }
+
+@keyframes heroMarquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes heroMarqueeRev {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+
+/* DaVinci-inspired colour orbs */
+.hero-orbs {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.hero-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(8px);
+  will-change: transform;
+  opacity: 0.7;
+  mix-blend-mode: screen;
+}
+
+.hero-orb--cyan {
+  width: 220px;
+  height: 220px;
+  top: 12%;
+  right: 22%;
+  background: radial-gradient(circle, rgba(70, 220, 255, 0.55) 0%, transparent 68%);
+}
+
+.hero-orb--gold {
+  width: 160px;
+  height: 160px;
+  bottom: 22%;
+  right: 12%;
+  background: radial-gradient(circle, rgba(255, 214, 70, 0.5) 0%, transparent 68%);
+}
+
+.hero-orb--red {
+  width: 280px;
+  height: 280px;
+  top: 38%;
+  right: 38%;
+  background: radial-gradient(circle, rgba(242, 43, 43, 0.38) 0%, transparent 70%);
+}
+
+.hero-viewfinder {
+  position: absolute;
+  inset: 78px 22px 22px;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.hero-viewfinder span {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border-color: rgba(255, 255, 255, 0.38);
+  border-style: solid;
+  border-width: 0;
+}
+
+.hero-viewfinder span:nth-child(1) { top: 0; left: 0; border-top-width: 2px; border-left-width: 2px; }
+.hero-viewfinder span:nth-child(2) { top: 0; right: 0; border-top-width: 2px; border-right-width: 2px; }
+.hero-viewfinder span:nth-child(3) { bottom: 0; left: 0; border-bottom-width: 2px; border-left-width: 2px; }
+.hero-viewfinder span:nth-child(4) { bottom: 0; right: 0; border-bottom-width: 2px; border-right-width: 2px; }
 
 /* --- Layer 4: Hero foreground content (parallax: fades & moves up on scroll) --- */
 
@@ -464,12 +590,13 @@ video {
 .hero .hero-content.wrap {
   padding-top: clamp(60px, 9vh, 95px);
   width: 100%;
-  max-width: min(540px, 44vw);
+  max-width: min(560px, 46vw);
   margin-left: clamp(32px, 4.5vw, 64px);
   margin-right: auto;
   position: relative;
   z-index: 2;
   will-change: transform, opacity;
+  transform-style: preserve-3d;
 }
 
 /* Hero-specific reveal (separate from section .reveal so it stays visible if JS off) */
@@ -498,6 +625,7 @@ video {
 .hero-entered .hero-reveal:nth-child(2) { animation-delay: 0.5s; }
 .hero-entered .hero-reveal:nth-child(3) { animation-delay: 0.8s; }
 .hero-entered .hero-reveal:nth-child(4) { animation-delay: 1.0s; }
+.hero-entered .hero-reveal:nth-child(5) { animation-delay: 1.18s; }
 
 @keyframes heroContentIn {
   from { opacity: 0; transform: translateY(30px); }
@@ -541,6 +669,8 @@ video {
 
 .hero h1 .accent {
   color: var(--red);
+  text-shadow: 0 0 28px rgba(242, 43, 43, 0.45);
+  display: inline-block;
 }
 
 .hero-copy {
@@ -556,6 +686,38 @@ video {
   gap: 18px;
   margin-top: clamp(18px, 2.5vh, 28px);
   flex-wrap: wrap;
+}
+
+.hero-stats {
+  list-style: none;
+  margin: 28px 0 0;
+  padding: 0;
+  display: flex;
+  gap: 22px;
+  flex-wrap: wrap;
+}
+
+.hero-stats li {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 72px;
+}
+
+.hero-stats strong {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.hero-stats span {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #a8a49d;
 }
 
 /* --- Layer 5: Floating cinematic details --- */
@@ -600,6 +762,21 @@ video {
 @keyframes recPulse {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.15; }
+}
+
+/* Camera metadata — mid right */
+.hero-float--iso {
+  top: 46%;
+  right: clamp(20px, 4vw, 48px);
+}
+
+.hero-iso {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.42);
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
 }
 
 /* Timecode counter — bottom right */
@@ -807,8 +984,9 @@ video {
 
 .scroll-note {
   position: absolute;
-  bottom: 30px;
-  left: max(36px, calc((100vw - var(--max)) / 2));
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   align-items: center;
   gap: 12px;
@@ -2456,6 +2634,16 @@ video {
   .hero-bg-img {
     object-position: 65% center;
   }
+  .hero-orbs,
+  .hero-viewfinder,
+  .hero-bg-text-layer--alt,
+  .hero-float--iso,
+  .hero-light-leak {
+    display: none;
+  }
+  .hero-bg-text {
+    font-size: clamp(3.2rem, 16vw, 6rem);
+  }
   .hero-gradient-layer {
     background:
       linear-gradient(
@@ -2524,6 +2712,10 @@ video {
   }
   .hero-side-note {
     display: none;
+  }
+  .hero-stats {
+    gap: 16px;
+    margin-top: 22px;
   }
   .scroll-note {
     left: 18px;
@@ -2605,13 +2797,19 @@ video {
   }
   .hero-bg-inner,
   .hero-bg-text,
+  .hero-bg-text-track,
   .hero-rec-dot {
     animation: none !important;
     transform: none !important;
     opacity: 1 !important;
   }
-  .hero-bg-text {
-    opacity: 0.08 !important;
+  .hero-bg-text,
+  .hero-bg-text-track {
+    opacity: 0.12 !important;
+  }
+  .hero-orbs,
+  .hero-light-leak {
+    display: none !important;
   }
   .scroll-dot,
   .scroll-arrow {

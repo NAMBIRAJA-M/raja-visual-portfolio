@@ -59,8 +59,9 @@
         clip-path: none !important;
       }
 
-      .hero-bg-text {
-        opacity: 0.08 !important;
+      .hero-bg-text,
+      .hero-bg-text-track {
+        opacity: 0.12 !important;
       }
 
       .preloader {
@@ -81,7 +82,7 @@
     "url": "https://[YOUR-PORTFOLIO-URL].com",
     "image": "https://[YOUR-PORTFOLIO-URL].com/assets/hero.webp",
     "sameAs": [
-      "https://www.instagram.com/muscle_magic/"
+      "https://www.instagram.com/muscle_magic___"
     ],
     "knowsAbout": ["Video Editing", "DaVinci Resolve", "Colour Grading", "Sound Design", "Wedding Cinematography", "Social Media Reels"]
   }
@@ -118,8 +119,6 @@
       <a href="#showreel">Showreel</a>
       <a href="#grade">Colour craft</a>
       <a href="#about">About</a>
-      <a href="#testimonials">Reviews</a>
-      <a href="#faq">FAQ</a>
       <a class="nav-cta" href="#contact">Let's work together ↗</a>
     </nav>
   </header>
@@ -135,8 +134,8 @@
          ~1920px. Replace with a 2560x1440+ optimised WebP for retina/4K displays.
     -->
     <section class="hero" id="home">
-      <!-- LAYER 1: Background image (parallax: slowest scroll speed + slight scale) -->
-      <div class="hero-bg-layer" data-parallax-speed="0.22" aria-hidden="true">
+      <!-- LAYER 1: Background image (slowest parallax + scale) -->
+      <div class="hero-bg-layer" data-parallax-speed="0.18" aria-hidden="true">
         <div class="hero-bg-inner">
           <picture>
             <!-- EDIT HERE: Supply a dedicated portrait-crop hero image (e.g. 800x1200 WebP) for mobile devices -->
@@ -149,15 +148,39 @@
         </div>
       </div>
 
-      <!-- LAYER 2: Dark gradient + vignette + cinematic red rim (parallax: medium) -->
-      <div class="hero-gradient-layer" data-parallax-speed="0.38" aria-hidden="true"></div>
+      <!-- LAYER 2: Dark gradient + vignette + cinematic red rim -->
+      <div class="hero-gradient-layer" data-parallax-speed="0.34" aria-hidden="true"></div>
 
-      <!-- LAYER 3: Large outlined background text (parallax: horizontal drift) -->
-      <!-- <div class="hero-bg-text-layer" data-parallax-speed="0.32" aria-hidden="true">
-        <span class="hero-bg-text">EDIT · COLOUR · SOUND</span>
+      <!-- LAYER 2b: Mouse-follow light leak -->
+      <!-- <div class="hero-light-leak" aria-hidden="true"></div> -->
+
+      <!-- LAYER 3: Giant outlined type (horizontal drift, two speeds) -->
+      <!-- <div class="hero-bg-text-layer" data-parallax-speed="0.48" aria-hidden="true">
+        <div class="hero-bg-text-track">
+          <span class="hero-bg-text">EDIT · COLOUR · SOUND · FRAME · RHYTHM ·</span>
+          <span class="hero-bg-text">EDIT · COLOUR · SOUND · FRAME · RHYTHM ·</span>
+        </div>
+      </div> -->
+      <div class="hero-bg-text-layer hero-bg-text-layer--alt" data-parallax-speed="0.5" aria-hidden="true">
+        <div class="hero-bg-text-track hero-bg-text-track--rev">
+          <span class="hero-bg-text">CUT · GRADE · MIX · DAVINCI ·</span>
+          <span class="hero-bg-text">CUT · GRADE · MIX · DAVINCI ·</span>
+        </div>
+      </div>
+
+      <!-- LAYER 3b: Colour orbs (DaVinci-inspired depth planes) -->
+      <!-- <div class="hero-orbs" aria-hidden="true">
+        <span class="hero-orb hero-orb--cyan" data-orb-depth="36"></span>
+        <span class="hero-orb hero-orb--gold" data-orb-depth="54"></span>
+        <span class="hero-orb hero-orb--red" data-orb-depth="22"></span>
       </div> -->
 
-      <!-- LAYER 4: Foreground content (parallax: fades & moves up on scroll) -->
+      <!-- Camera viewfinder corners -->
+      <div class="hero-viewfinder" aria-hidden="true">
+        <span></span><span></span><span></span><span></span>
+      </div>
+
+      <!-- LAYER 4: Foreground content (moves up + 3D mouse tilt) -->
       <div class="wrap hero-content" data-parallax-speed="0.75">
         <div class="eyebrow hero-reveal">Independent video editor · DaVinci Resolve</div>
         <h1 class="hero-reveal hero-reveal--line">I turn moments<br>into <span
@@ -169,16 +192,22 @@
           <a class="button-outline magnetic" href="#showreel">Watch showreel ▶</a>
           <a class="text-link" href="#contact">Have a project in mind?</a>
         </div>
+        <ul class="hero-stats hero-reveal">
+          <li><strong>24</strong><span>fps masters</span></li>
+          <li><strong>4K</strong><span>delivery</span></li>
+          <li><strong>DaVinci</strong><span>colour science</span></li>
+        </ul>
       </div>
 
-      <!-- LAYER 5: Floating cinematic details (different drift speeds) -->
+      <!-- LAYER 5: Floating cinematic details -->
       <div class="hero-floaters" aria-hidden="true">
-        <!-- REC indicator -->
-        <div class="hero-float hero-float--rec" data-parallax-speed="0.52">
+        <div class="hero-float hero-float--rec" data-parallax-speed="0.62">
           <span class="hero-rec"><span class="hero-rec-dot"></span> REC</span>
         </div>
-        <!-- Counting timecode (starts at 00:00:12:08 and ticks up) -->
-        <div class="hero-float hero-float--tc" data-parallax-speed="0.58">
+        <div class="hero-float hero-float--iso" data-parallax-speed="0.44">
+          <span class="hero-iso">ISO 320 · 1/50 · 24FPS</span>
+        </div>
+        <div class="hero-float hero-float--tc" data-parallax-speed="0.7">
           <span class="hero-timecode" id="heroTimecode">00:00:12:08</span>
         </div>
       </div>
@@ -217,8 +246,7 @@
             <div class="section-kicker">Showreel / 2026 Edition</div>
             <h2 class="section-title">The pace.<br><span>The feeling.</span></h2>
           </div>
-          <p class="section-description">A curated 15-second glimpse of rhythm, sound design, and color grading across
-            wedding highlights, cinematic short films, and social edits.</p>
+          <p class="section-description">A glimpse into my world of video editing — where rhythm, emotion, and sound come together to turn raw footage into stories that stay with you.</p>
         </div>
 
         <div class="showreel-container reveal delay-1">
@@ -522,24 +550,20 @@
       <div class="wrap about-grid">
         <div class="about-visual reveal">
           <!-- EDIT HERE: Replace assets/about.jpg with your portrait photo in your editing suite -->
-          <img src="assets/about.jpg" alt="Raja editing cinematic footage in a dark DaVinci Resolve color studio"
+          <img src="assets/hero.png" alt="Raja editing cinematic footage in a dark DaVinci Resolve color studio"
             width="800" height="1000" loading="lazy">
           <div class="about-stamp">DaVinci Resolve Suite · India</div>
         </div>
 
         <div class="about-copy reveal delay-1">
           <div class="section-kicker">03 / Behind the frames</div>
-          <h2 class="section-title">Not just edited.<br><span>Felt.</span></h2>
-          <p>I'm Raja, an independent video editor and colourist. I work with raw rushes to find the emotional core of
-            every sequence — meticulously crafting the pace, colour science, and soundscape until every cut feels
-            necessary.</p>
-          <p>Whether it's a 3-minute emotional wedding film, a fast-paced vertical reel with high retention, or a moody
-            commercial narrative, my focus is identical: listen to the emotion, understand your audience, and build the
-            edit around it.</p>
+          <h2 class="section-title">Every cut tells<br><span>A Story.</span></h2>
+          <p>I'm Raja, a video editor passionate about turning raw footage into compelling visual stories. I specialize in crafting engaging edits through thoughtful pacing, seamless transitions, and carefully selected music and sound effects.</p>
+          <p>From emotional wedding films and dynamic social media reels to cinematic commercials, I focus on creating impactful videos that capture attention, communicate ideas, and connect with audiences.</p>
 
           <!-- Real-numbers block with data-count="0" placeholders -->
           <!-- EDIT HERE: Replace data-count="0" and the numbers below with your honest metrics -->
-          <div class="about-stats" aria-label="Editor Metrics">
+          <!-- <div class="about-stats" aria-label="Editor Metrics">
             <div class="stat">
               <strong class="stat-num" data-count="0">[YOUR NUMBER]<span>+</span></strong>
               <span class="stat-label">Wedding & Event Films</span>
@@ -556,62 +580,7 @@
               <strong class="stat-num" data-count="0">100<span>%</span></strong>
               <span class="stat-label">Delivery On Schedule</span>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 9. TESTIMONIALS SECTION (Step 3 - Client Trust) -->
-    <section class="testimonials-section section" id="testimonials">
-      <div class="wrap">
-        <div class="section-head reveal">
-          <div>
-            <div class="section-kicker">04 / Words from Collaborators</div>
-            <h2 class="section-title">What clients<br><span>say about the cuts.</span></h2>
-          </div>
-          <p class="section-description">Feedback from couples, directors, and creators who trusted Raja Visual with
-            their stories.</p>
-        </div>
-
-        <div class="testimonials-grid">
-          <!-- TESTIMONIAL 1: Wedding Couple -->
-          <!-- EDIT HERE: Replace with your real client quote and name -->
-          <article class="testimonial-card reveal">
-            <div class="testimonial-quote-mark">“</div>
-            <blockquote>[YOUR CLIENT TESTIMONIAL HERE — E.g. "Raja took over 12 hours of raw wedding clips and turned
-              them into a 3-minute teaser that brought our families to tears. The skin-tone grade and pacing were pure
-              cinema."]</blockquote>
-            <div class="testimonial-author">
-              <h3 class="testimonial-name">[CLIENT NAME HERE]</h3>
-              <p class="testimonial-role">[COUPLE — DESTINATION WEDDING]</p>
-            </div>
-          </article>
-
-          <!-- TESTIMONIAL 2: Social Media Creator -->
-          <!-- EDIT HERE: Replace with your real client quote and name -->
-          <article class="testimonial-card reveal delay-1">
-            <div class="testimonial-quote-mark">“</div>
-            <blockquote>[YOUR CLIENT TESTIMONIAL HERE — E.g. "Our reel views quadrupled after Raja took over our
-              post-production. His sound design, pacing, and visual hooks keep viewers glued to the screen until the
-              last second."]</blockquote>
-            <div class="testimonial-author">
-              <h3 class="testimonial-name">[CREATOR / BRAND NAME HERE]</h3>
-              <p class="testimonial-role">[LIFESTYLE CREATOR & FOUNDER]</p>
-            </div>
-          </article>
-
-          <!-- TESTIMONIAL 3: Indie Director -->
-          <!-- EDIT HERE: Replace with your real client quote and name -->
-          <article class="testimonial-card reveal delay-2">
-            <div class="testimonial-quote-mark">“</div>
-            <blockquote>[YOUR CLIENT TESTIMONIAL HERE — E.g. "An exceptional eye for colour grading in DaVinci Resolve.
-              Delivered a rich film print emulation that gave our commercial short a true 35mm Hollywood presence."]
-            </blockquote>
-            <div class="testimonial-author">
-              <h3 class="testimonial-name">[DIRECTOR / PRODUCER HERE]</h3>
-              <p class="testimonial-role">[CREATIVE AGENCY DIRECTOR]</p>
-            </div>
-          </article>
+          </div> -->
         </div>
       </div>
     </section>
@@ -621,7 +590,7 @@
       <div class="wrap">
         <div class="section-head reveal">
           <div>
-            <div class="section-kicker">05 / Craft & Expertise</div>
+            <div class="section-kicker">04 / Craft & Expertise</div>
             <h2 class="section-title">Made for your<br><span>kind of story.</span></h2>
           </div>
           <p class="section-description">End-to-end post-production services tailored for filmmakers, couples, brands,
@@ -674,8 +643,8 @@
       <div class="wrap">
         <div class="section-head reveal">
           <div>
-            <div class="section-kicker">07 / The Collaboration Flow</div>
-            <h2 class="section-title">From raw clips<br>to <span>final master.</span></h2>
+            <div class="section-kicker">05 / The Collaboration Flow</div>
+            <h2 class="section-title">From first cut <br>to <span>final master.</span></h2>
           </div>
           <p class="section-description">A structured, hassle-free process keeps communication effortless and delivery
             on time.</p>
@@ -708,96 +677,13 @@
       </div>
     </section>
 
-    <!-- 13. FAQ ACCORDION (Step 3) -->
-    <section class="faq-section section" id="faq">
-      <div class="wrap">
-        <div class="section-head reveal">
-          <div>
-            <div class="section-kicker">08 / Frequently Asked Questions</div>
-            <h2 class="section-title">Clear answers before<br><span>we roll.</span></h2>
-          </div>
-          <p class="section-description">Everything you need to know about turnaround times, revisions, file sharing,
-            and payment milestones.</p>
-        </div>
-
-        <div class="faq-list reveal delay-1">
-          <!-- FAQ 1: Turnaround -->
-          <details class="faq-item" open>
-            <summary class="faq-trigger">
-              <span>What is your typical turnaround time?</span>
-              <span class="faq-icon" aria-hidden="true">+</span>
-            </summary>
-            <div class="faq-content">
-              <p>Social reels are delivered within <strong>48 to 72 hours</strong>. Wedding teasers and highlight films
-                typically take <strong>5 to 7 business days</strong>. Full-length wedding films or complex commercial
-                campaigns take <strong>10 to 14 business days</strong>. Rush delivery is available on request.</p>
-            </div>
-          </details>
-
-          <!-- FAQ 2: Revisions -->
-          <details class="faq-item">
-            <summary class="faq-trigger">
-              <span>How many rounds of revisions are included?</span>
-              <span class="faq-icon" aria-hidden="true">+</span>
-            </summary>
-            <div class="faq-content">
-              <p>Each project includes <strong>2 to 3 revision rounds</strong> (detailed in your package). We use
-                timecoded review links (Frame.io or Google Drive) so you can pinpoint exact frames for notes. 95% of our
-                edits are approved within the first round.</p>
-            </div>
-          </details>
-
-          <!-- FAQ 3: Footage Sharing -->
-          <details class="faq-item">
-            <summary class="faq-trigger">
-              <span>How do we share raw footage and large files?</span>
-              <span class="faq-icon" aria-hidden="true">+</span>
-            </summary>
-            <div class="faq-content">
-              <p>You can upload raw files via <strong>Google Drive, Dropbox, WeTransfer, OneDrive, or Frame.io</strong>.
-                For very large multicam wedding shoots (100GB+), we can coordinate physical SSD courier delivery or
-                high-speed cloud FTP transfers.</p>
-            </div>
-          </details>
-
-          <!-- FAQ 4: File Delivery Specs -->
-          <details class="faq-item">
-            <summary class="faq-trigger">
-              <span>What export formats and delivery specs do you provide?</span>
-              <span class="faq-icon" aria-hidden="true">+</span>
-            </summary>
-            <div class="faq-content">
-              <p>I deliver master files in <strong>4K UHD (3840x2160)</strong> or 1080p Full HD in high-bitrate MP4
-                (H.265 / H.264), Apple ProRes 422 HQ on request, and vertical 9:16 (1080x1920) formatted specifically
-                for Instagram Reels, YouTube Shorts, and TikTok.</p>
-            </div>
-          </details>
-
-          <!-- FAQ 5: Payment Milestones -->
-          <details class="faq-item">
-            <summary class="faq-trigger">
-              <span>How do payments and milestones work?</span>
-              <span class="faq-icon" aria-hidden="true">+</span>
-            </summary>
-            <div class="faq-content">
-              <p>Projects begin with a <strong>50% advance deposit</strong> to lock your editing slot in the schedule.
-                The remaining <strong>50% balance</strong> is due upon final cut approval before delivery of
-                unwatermarked 4K master files. Payments are accepted via UPI, Bank Transfer, or PayPal / Wise for
-                international clients.</p>
-            </div>
-          </details>
-        </div>
-      </div>
-    </section>
-
     <!-- 14. CONTACT SECTION (Step 3 - Formspree/Netlify/WhatsApp & Mailto Fallback) -->
     <section class="contact" id="contact">
       <div class="wrap contact-grid">
         <div class="contact-copy reveal">
-          <div class="section-kicker">09 / Start a project</div>
-          <h2 class="section-title">Your footage.<br><span>Our next story.</span></h2>
-          <p>Have an upcoming wedding film, short-form reel batch, travel documentary, or commercial project? Send your
-            details below and I will get back to you within 24 hours.</p>
+          <div class="section-kicker">06 / Start a project</div>
+          <h2 class="section-title">LET'S CREATE<br><span>SOMETHING GREAT</span></h2>
+          <p>Whether you're planning a wedding film, short-form reel batch, travel documentary, or commercial project, I'm here to help you create something great. Send your details below and I will get back to you within 24 hours.</p>
 
           <div class="contact-details">
             <!-- EDIT HERE: Update email address -->
@@ -806,14 +692,14 @@
               <span>EMAIL ↗</span>
             </a>
             <!-- EDIT HERE: Update Instagram handle and profile URL -->
-            <a href="https://www.instagram.com/muscle_magic/" target="_blank" rel="noopener noreferrer"
+            <a href="https://www.instagram.com/muscle_magic___/" target="_blank" rel="noopener noreferrer"
               aria-label="Visit Instagram profile @muscle_magic">
               Instagram
-              <span>@muscle_magic ↗</span>
+              <span>@muscle_magic___ ↗</span>
             </a>
             <!-- EDIT HERE: Replace [YOUR_WHATSAPP_NUMBER] with your phone number (e.g. 919876543210) -->
             <a class="whatsapp-link-btn"
-              href="https://wa.me/[YOUR_WHATSAPP_NUMBER]?text=Hi%20Raja,%20I'm%20interested%20in%20a%20video%20edit%20project!"
+              href="https://wa.me/916379117088?text=Hi%20Raja,%20I'm%20interested%20in%20a%20video%20edit%20project!"
               target="_blank" rel="noopener noreferrer">
               <span>💬 Chat directly on WhatsApp ↗</span>
             </a>
@@ -915,7 +801,7 @@
   <!-- 17. FLOATING WHATSAPP BUTTON (Step 3) -->
   <!-- EDIT HERE: Replace [YOUR_WHATSAPP_NUMBER] with your WhatsApp number with country code -->
   <a class="floating-whatsapp"
-    href="https://wa.me/[YOUR_WHATSAPP_NUMBER]?text=Hi%20Raja,%20I'm%20interested%20in%20a%20video%20edit%20project!"
+    href="https://wa.me/916379117088?text=Hi%20Raja,%20I'm%20interested%20in%20a%20video%20edit%20project!"
     target="_blank" rel="noopener noreferrer" aria-label="Chat directly with Raja on WhatsApp">
     <svg viewBox="0 0 32 32" aria-hidden="true">
       <path

@@ -105,10 +105,12 @@
   const progress = $('#progress');
   const layer1 = $('.hero-bg-layer', hero);
   const layer2 = $('.hero-gradient-layer', hero);
-  const layer3 = $('.hero-bg-text-layer', hero);
+  const textLayers = $$('.hero-bg-text-layer', hero);
   const layer4 = $('.hero-content', hero);
   const floatRec = $('.hero-float--rec', hero);
+  const floatIso = $('.hero-float--iso', hero);
   const floatTc = $('.hero-float--tc', hero);
+  const orbs = $$('[data-orb-depth]', hero);
   const scrollCue = $('#scrollCue');
   const projectCardsForParallax = $$('.project-card');
   const sectionTitlesForParallax = $$('.section-title');
@@ -168,8 +170,8 @@
 
     // 1. Mouse Depth Lerp
     if (!isTouchDevice) {
-      currentMouseX += (targetMouseX - currentMouseX) * 0.075;
-      currentMouseY += (targetMouseY - currentMouseY) * 0.075;
+      currentMouseX += (targetMouseX - currentMouseX) * 0.1;
+      currentMouseY += (targetMouseY - currentMouseY) * 0.1;
       if (Math.abs(targetMouseX - currentMouseX) > 0.001 || Math.abs(targetMouseY - currentMouseY) > 0.001) {
         requestTick();
       }
@@ -184,41 +186,55 @@
       const mx = isTouchDevice ? 0 : currentMouseX;
       const my = isTouchDevice ? 0 : currentMouseY;
 
-      // Layer 1: Background photo (slowest 0.22x + slight scale-up on scroll)
+      hero.style.setProperty('--mx', `${50 + mx * 28}%`);
+      hero.style.setProperty('--my', `${42 + my * 22}%`);
+
+      // Layer 1: Background photo (slow drift + stronger scale-up)
       if (layer1) {
-        const l1Y = scrollY * 0.22 * motionScale;
-        const l1Scale = 1.0 + Math.min(0.12, (scrollY / heroHeight) * 0.1);
-        layer1.style.transform = `translate3d(${mx * -10}px, ${l1Y + my * -8}px, 0) scale(${l1Scale})`;
+        const l1Y = scrollY * 0.18 * motionScale;
+        const l1Scale = 1.0 + Math.min(0.18, (scrollY / heroHeight) * 0.16);
+        layer1.style.transform = `translate3d(${mx * -36}px, ${l1Y + my * -24}px, 0) scale(${l1Scale})`;
       }
 
-      // Layer 2: Dark/red gradient (medium 0.38x)
+      // Layer 2: Dark/red gradient
       if (layer2) {
-        const l2Y = scrollY * 0.38 * motionScale;
-        layer2.style.transform = `translate3d(${mx * -6}px, ${l2Y + my * -4}px, 0)`;
+        const l2Y = scrollY * 0.34 * motionScale;
+        layer2.style.transform = `translate3d(${mx * -18}px, ${l2Y + my * -12}px, 0)`;
       }
 
-      // Layer 3: Large outlined background text (horizontal drift + vertical drift)
-      if (layer3) {
-        const l3X = scrollY * 0.32 * motionScale;
-        const l3Y = scrollY * 0.26 * motionScale;
-        layer3.style.transform = `translate3d(${l3X + mx * 16}px, ${l3Y + my * 10}px, 0)`;
-      }
+      // Layer 3: Outlined type bands (opposite directions, different speeds)
+      textLayers.forEach((layer, i) => {
+        const dir = i % 2 === 0 ? 1 : -1;
+        const speed = parseFloat(layer.dataset.parallaxSpeed || '0.4');
+        const lX = scrollY * speed * dir * motionScale;
+        const lY = scrollY * (0.18 + i * 0.08) * motionScale;
+        layer.style.transform = `translate3d(${lX + mx * 42 * dir}px, ${lY + my * 16}px, 0)`;
+      });
 
-      // Layer 4: Foreground content (moves up faster, fades out as hero leaves screen)
+      // Layer 4: Foreground content (rises, fades, 3D mouse tilt)
       if (layer4) {
-        const l4Y = -scrollY * 0.28 * motionScale;
-        const fadeProgress = Math.min(1, Math.max(0, scrollY / (heroHeight * 0.72)));
-        const l4Opacity = Math.max(0, 1 - fadeProgress * 1.3);
-        layer4.style.transform = `translate3d(${mx * -12}px, ${l4Y + my * -8}px, 0)`;
+        const l4Y = -scrollY * 0.38 * motionScale;
+        const fadeProgress = Math.min(1, Math.max(0, scrollY / (heroHeight * 0.68)));
+        const l4Opacity = Math.max(0, 1 - fadeProgress * 1.35);
+        layer4.style.transform = `translate3d(${mx * 18}px, ${l4Y + my * -16}px, 0) rotateY(${mx * 6}deg) rotateX(${my * -4}deg)`;
         layer4.style.opacity = l4Opacity;
       }
 
-      // Layer 5: Floating details (REC, timecode)
+      orbs.forEach((orb) => {
+        const depth = parseFloat(orb.dataset.orbDepth) || 30;
+        const oY = scrollY * (depth * 0.012) * motionScale;
+        orb.style.transform = `translate3d(${mx * depth}px, ${oY + my * (depth * 0.45)}px, 0)`;
+      });
+
+      // Layer 5: Floating details (REC, ISO, timecode)
       if (floatRec) {
-        floatRec.style.transform = `translate3d(${mx * -18}px, ${scrollY * 0.52 * motionScale + my * -12}px, 0)`;
+        floatRec.style.transform = `translate3d(${mx * -28}px, ${scrollY * 0.62 * motionScale + my * -18}px, 0)`;
+      }
+      if (floatIso) {
+        floatIso.style.transform = `translate3d(${mx * 20}px, ${scrollY * 0.44 * motionScale + my * 10}px, 0)`;
       }
       if (floatTc) {
-        floatTc.style.transform = `translate3d(${mx * -22}px, ${scrollY * 0.58 * motionScale + my * -16}px, 0)`;
+        floatTc.style.transform = `translate3d(${mx * -32}px, ${scrollY * 0.7 * motionScale + my * -22}px, 0)`;
       }
 
       // Scroll Cue: Fades out smoothly as user scrolls
