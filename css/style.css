@@ -159,6 +159,23 @@ video {
   text-align: center;
 }
 
+.loader-logo {
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 18px;
+  transform-origin: 50% 50%;
+  animation: davinci-spin 2.4s linear infinite;
+  filter: drop-shadow(0 0 18px rgba(80, 180, 255, 0.28));
+}
+
+@keyframes davinci-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .loader-brand {
   font-family: var(--font-heading);
   font-size: clamp(2.5rem, 8vw, 4.8rem);
@@ -203,6 +220,7 @@ video {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 28px;
   padding: 22px max(36px, calc((100vw - var(--max)) / 2));
   border-bottom: 1px solid transparent;
   transition: background 0.35s, border-color 0.35s, padding 0.35s;
@@ -224,6 +242,27 @@ video {
   letter-spacing: 0.02em;
   display: inline-flex;
   align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 2;
+}
+
+.logo-mark {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  display: block;
+  flex-shrink: 0;
+  transform-origin: 50% 50%;
+  transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1), filter 0.35s ease;
+  will-change: transform;
+}
+
+.brand:hover .logo-mark,
+.footer-brand:hover .logo-mark {
+  transform: rotate(360deg);
+  filter: drop-shadow(0 0 10px rgba(90, 190, 255, 0.55));
 }
 
 .brand em {
@@ -234,7 +273,8 @@ video {
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 24px;
+  min-width: 0;
 }
 
 .nav-links a {
@@ -2089,6 +2129,14 @@ video {
   font-family: var(--font-heading);
   font-size: 1.2rem;
   color: #fff;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer-brand .logo-mark {
+  width: 32px;
+  height: 32px;
 }
 
 .footer-brand span {
@@ -2305,6 +2353,15 @@ video {
   }
   .pricing-card.featured {
     grid-column: span 2;
+  }
+}
+
+@media (max-width: 1100px) {
+  .nav-links {
+    gap: 16px;
+  }
+  .nav-links a {
+    letter-spacing: 0.1em;
   }
 }
 
@@ -2564,5 +2621,11 @@ video {
   }
   .ticker-track {
     animation: none !important;
+  }
+  .loader-logo,
+  .brand:hover .logo-mark,
+  .footer-brand:hover .logo-mark {
+    animation: none !important;
+    transform: none !important;
   }
 }

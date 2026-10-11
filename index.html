@@ -30,7 +30,7 @@
   <meta name="twitter:image" content="assets/hero.webp">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="icon" type="image/png" href="assets/davinci-logo.png">
 
   <!-- Performance: Preload Above-the-fold Hero Image -->
   <link rel="preload" as="image" href="assets/hero.webp" type="image/webp">
@@ -92,6 +92,7 @@
   <!-- 1. PRELOADER (Fast ~0.6s / Skipped on Return Visits via sessionStorage) -->
   <div class="preloader" id="preloader" aria-hidden="true">
     <div class="loader-inner">
+      <img class="loader-logo" src="assets/davinci-logo.png" alt="Raja Visual DaVinci logo" width="140" height="140">
       <div class="loader-brand">RAJA <span>VISUAL</span></div>
       <div class="loader-track">
         <div class="loader-fill"></div>
@@ -106,7 +107,10 @@
   <!-- 2. NAVIGATION HEADER -->
   <header class="nav" id="nav">
     <!-- EDIT HERE: Brand name -->
-    <a class="brand" href="#home" aria-label="Raja Visual home">RAJA <em>VISUAL.</em></a>
+    <a class="brand" href="#home" aria-label="Raja Visual home">
+      <img class="logo-mark" src="assets/davinci-logo.png" alt="" width="36" height="36">
+      RAJA <em>VISUAL.</em>
+    </a>
     <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false"
       type="button">☰</button>
     <nav class="nav-links" id="navLinks" aria-label="Main Navigation">
@@ -115,7 +119,6 @@
       <a href="#grade">Colour craft</a>
       <a href="#about">About</a>
       <a href="#testimonials">Reviews</a>
-      <a href="#pricing">Packages</a>
       <a href="#faq">FAQ</a>
       <a class="nav-cta" href="#contact">Let's work together ↗</a>
     </nav>
@@ -150,9 +153,9 @@
       <div class="hero-gradient-layer" data-parallax-speed="0.38" aria-hidden="true"></div>
 
       <!-- LAYER 3: Large outlined background text (parallax: horizontal drift) -->
-      <div class="hero-bg-text-layer" data-parallax-speed="0.32" aria-hidden="true">
+      <!-- <div class="hero-bg-text-layer" data-parallax-speed="0.32" aria-hidden="true">
         <span class="hero-bg-text">EDIT · COLOUR · SOUND</span>
-      </div>
+      </div> -->
 
       <!-- LAYER 4: Foreground content (parallax: fades & moves up on scroll) -->
       <div class="wrap hero-content" data-parallax-speed="0.75">
@@ -665,118 +668,6 @@
       </div>
     </section>
 
-    <!-- 11. PACKAGES & PRICING (Step 3 - 3 Transparent Tiers) -->
-    <section class="pricing-section section" id="pricing">
-      <div class="wrap">
-        <div class="section-head reveal">
-          <div>
-            <div class="section-kicker">06 / Investment & Packages</div>
-            <h2 class="section-title">Transparent pricing.<br><span>No surprises.</span></h2>
-          </div>
-          <p class="section-description">Three clear packages designed around your project scale. Need a custom quote?
-            Reach out directly.</p>
-        </div>
-
-        <div class="pricing-grid">
-          <!-- TIER 1: Social Reels & Short-Form -->
-          <!-- EDIT HERE: Replace placeholder pricing, turnaround, and revision specs -->
-          <div class="pricing-card reveal">
-            <div class="pricing-header">
-              <span class="pricing-kicker">Tier 01 / Social</span>
-              <h3 class="pricing-title">Short-Form Reel</h3>
-              <div class="pricing-cost">[PRICE: ₹X,XXX / $XXX] <span>/ reel</span></div>
-            </div>
-            <div class="pricing-specs">
-              <div class="spec-item">
-                <span class="spec-label">Turnaround:</span>
-                <span class="spec-val">[48–72 Hours]</span>
-              </div>
-              <div class="spec-item">
-                <span class="spec-label">Revisions:</span>
-                <span class="spec-val">[2 Rounds Included]</span>
-              </div>
-              <div class="spec-item">
-                <span class="spec-label">Aspect:</span>
-                <span class="spec-val">Vertical 9:16 (1080x1920)</span>
-              </div>
-            </div>
-            <ul class="pricing-features">
-              <li>Hook editing & high retention pacing</li>
-              <li>Beat-synced cuts & sound design (SFX)</li>
-              <li>DaVinci Resolve color grade</li>
-              <li>Dynamic subtitles & graphic callouts</li>
-              <li>Ready for Instagram, TikTok & YouTube Shorts</li>
-            </ul>
-            <a class="button-outline" href="#contact">Select Reel Package ↗</a>
-          </div>
-
-          <!-- TIER 2: Cinematic Teaser / Highlight (FEATURED) -->
-          <!-- EDIT HERE: Replace placeholder pricing, turnaround, and revision specs -->
-          <div class="pricing-card featured reveal delay-1">
-            <span class="pricing-badge">★ MOST POPULAR</span>
-            <div class="pricing-header">
-              <span class="pricing-kicker">Tier 02 / Cinematic</span>
-              <h3 class="pricing-title">Wedding / Highlight Film</h3>
-              <div class="pricing-cost">[PRICE: ₹XX,XXX / $XXX] <span>/ film</span></div>
-            </div>
-            <div class="pricing-specs">
-              <div class="spec-item">
-                <span class="spec-label">Turnaround:</span>
-                <span class="spec-val">[5–7 Business Days]</span>
-              </div>
-              <div class="spec-item">
-                <span class="spec-label">Revisions:</span>
-                <span class="spec-val">[3 Rounds Included]</span>
-              </div>
-              <div class="spec-item">
-                <span class="spec-label">Length:</span>
-                <span class="spec-val">2–4 Minutes (Teaser/Highlight)</span>
-              </div>
-            </div>
-            <ul class="pricing-features">
-              <li>Multi-camera synchronisation & clip selection</li>
-              <li>Speech / vows narrative audio cleanup</li>
-              <li>Licensed cinematic soundtrack curation</li>
-              <li>Full DaVinci Resolve color grade & film LUT</li>
-              <li>4K UHD Master (16:9) + 1x vertical 9:16 teaser</li>
-            </ul>
-            <a class="button" href="#contact">Book Highlight Film <span class="arrow">↗</span></a>
-          </div>
-
-          <!-- TIER 3: Full Feature / Brand Film -->
-          <!-- EDIT HERE: Replace placeholder pricing, turnaround, and revision specs -->
-          <div class="pricing-card reveal delay-2">
-            <div class="pricing-header">
-              <span class="pricing-kicker">Tier 03 / Narrative</span>
-              <h3 class="pricing-title">Full Feature / Commercial</h3>
-              <div class="pricing-cost">[PRICE: ₹XX,XXX / $XXX] <span>/ project</span></div>
-            </div>
-            <div class="pricing-specs">
-              <div class="spec-item">
-                <span class="spec-label">Turnaround:</span>
-                <span class="spec-val">[10–14 Business Days]</span>
-              </div>
-              <div class="spec-item">
-                <span class="spec-label">Revisions:</span>
-                <span class="spec-val">[3 Rounds Included]</span>
-              </div>
-              <div class="spec-item">
-                <span class="spec-label">Length:</span>
-                <span class="spec-val">Up to 15–20 Mins or Ad Campaign</span>
-              </div>
-            </div>
-            <ul class="pricing-features">
-              <li>Comprehensive storyline architecture</li>
-              <li>Full documentary cut + teaser trailer</li>
-              <li>Custom multi-node color grade & look development</li>
-              <li>Multi-track audio mix & stereo mastering</li>
-              <li>ProRes 422 HQ & H.265 Master exports</li>
-            </ul>
-            <a class="button-outline" href="#contact">Inquire for Commercial ↗</a>
-          </div>
-        </div>
-      </div>
-    </section>
 
     <!-- 12. WORKFLOW PROCESS -->
     <section class="section" id="process">
@@ -983,7 +874,10 @@
 
   <!-- 15. FOOTER -->
   <footer class="footer wrap">
-    <a class="footer-brand" href="#home">RAJA <span>VISUAL.</span></a>
+    <a class="footer-brand" href="#home">
+      <img class="logo-mark" src="assets/davinci-logo.png" alt="" width="32" height="32">
+      RAJA <span>VISUAL.</span>
+    </a>
     <span>Independent Video Editor · DaVinci Resolve</span>
     <!-- EDIT HERE: Update year or brand in copyright -->
     <span>© <span id="year">2026</span> Raja Visual. All rights reserved.</span>
