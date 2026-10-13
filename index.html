@@ -246,30 +246,36 @@
             <div class="section-kicker">Showreel / 2026 Edition</div>
             <h2 class="section-title">The pace.<br><span>The feeling.</span></h2>
           </div>
-          <p class="section-description">A glimpse into my world of video editing — where rhythm, emotion, and sound come together to turn raw footage into stories that stay with you.</p>
+          <p class="section-description">A glimpse into my world of video editing — where rhythm, emotion, and sound
+            come together to turn raw footage into stories that stay with you.</p>
         </div>
 
-        <div class="showreel-container reveal delay-1">
-          <!-- Video element: muted, looping, lazy loaded poster, reduced-motion friendly -->
-          <!-- EDIT HERE: Replace poster and src with your real 10-15s showreel MP4 file -->
-          <video id="showreelVideo" class="showreel-video" poster="assets/showreel-poster.jpg" autoplay muted loop
-            playsinline preload="none" aria-label="Raja Visual Showreel Highlight Reel">
-            <!-- Placeholder fallback showreel clip: replace with assets/showreel.mp4 -->
-            <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
-              type="video/mp4">
-            Your browser does not support HTML5 video.
-          </video>
-          <div class="showreel-overlay">
-            <div class="showreel-badge">
-              <span class="dot"></span> 15s Showreel Reel
-            </div>
-            <div class="showreel-bottom">
-              <div class="showreel-caption">
-                <h3>DaVinci Resolve Timeline</h3>
-                <p>Colour grading · Sound design · Rhythm cuts</p>
-              </div>
-              <button class="showreel-ctrl-btn" id="showreelToggleBtn" type="button"
-                aria-label="Pause showreel">⏸</button>
+        <div class="showreel-container reveal delay-1" id="vp" tabindex="0">
+          <video id="vpVideo" class="showreel-video" src="assets/showreelintro.mp4" poster="assets/hero.png"
+            preload="auto" loop playsinline></video>
+
+          <button class="vp-big" id="vpBig" type="button" aria-label="Play video">▶</button>
+          <button class="vp-unmute" id="vpUnmute" type="button">🔇 Tap to unmute</button>
+
+          <div class="vp-controls" id="vpControls">
+            <input type="range" id="vpSeek" min="0" max="100" step="0.1" value="0" aria-label="Seek">
+
+            <div class="vp-row">
+              <button type="button" id="vpPlay" aria-label="Play or pause">▶</button>
+              <button type="button" id="vpMute" aria-label="Mute">🔊</button>
+              <input type="range" id="vpVol" min="0" max="2" step="0.05" value="1" aria-label="Volume (up to 200%)">
+              <span id="vpVolText">100%</span>
+              <span id="vpTime">0:00 / 0:00</span>
+              <span class="vp-spacer"></span>
+
+              <select id="vpSpeed" aria-label="Playback speed">
+                <option value="0.5">0.5x</option>
+                <option value="1" selected>1x</option>
+                <option value="1.5">1.5x</option>
+                <option value="2">2x</option>
+              </select>
+              <button type="button" id="vpPip" aria-label="Picture in picture">PiP</button>
+              <button type="button" id="vpFs" aria-label="Fullscreen">⛶</button>
             </div>
           </div>
         </div>
@@ -303,34 +309,41 @@
 
           <!-- PROJECT 1: Wide Card (7 cols) - Wedding Teaser -->
           <!-- EDIT HERE: Replace data attributes with your real project details and YouTube/Vimeo embed URL -->
-          <button type="button" class="project-card wide reveal" data-category="wedding" data-title="A Story in Two"
-            data-type="Wedding Teaser" data-client="[CLIENT: Destination Wedding — Udaipur]"
-            data-craft="[SERVICES: Narrative Edit · Skin-Tone Grading · Audio Sync]" data-duration="[DURATION: 2m 45s]"
-            data-description="A romantic, cinematic teaser built around intimate vows, music-led pacing, warm golden-hour skin tones, and an emotional crescendo."
-            data-video="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ" aria-haspopup="dialog"
-            aria-label="Open project details: A Story in Two (Wedding Teaser)">
-            <div class="project-image-box">
-              <img class="project-image" src="assets/thumbs/project-1.jpg"
-                alt="Emotional bride and groom embrace during sunset cliffside wedding vows" width="1280" height="720"
-                loading="lazy">
+          <button type="button" class="project-card wide reveal" data-category="wedding"
+          data-title="A Story in Two"
+          data-type="Wedding Teaser"
+          data-client="Destination Wedding, Udaipur"
+          data-craft="Narrative Edit · Skin-Tone Grading · Audio Sync"
+          data-duration="2m 45s"
+          data-description="A romantic, cinematic teaser built around intimate vows, music-led pacing, warm golden-hour skin tones, and an emotional crescendo."
+          data-video="https://www.youtube.com/embed/3RQ04AVkG24"
+          aria-haspopup="dialog"
+          aria-label="Open project details: A Story in Two (Wedding Teaser)">
+        
+          <div class="project-image-box">
+            <img class="project-image" src="assets/thumbs/project-1.jpg"
+              alt="Emotional bride and groom embrace during sunset cliffside wedding vows"
+              width="1280" height="720" loading="lazy">
+          </div>
+        
+          <div class="project-card-top">
+            <span class="project-index">01 / 06</span>
+            <span class="project-open" aria-hidden="true">↗</span>
+          </div>
+        
+          <div class="project-info">
+            <div class="project-info-header">
+              <h3>A Story in Two</h3>
+              <span class="project-type">Wedding film</span>
             </div>
-            <div class="project-card-top">
-              <span class="project-index">01 / 06</span>
-              <span class="project-open" aria-hidden="true">↗</span>
+            <p>Emotion-led teaser with delicate skin-tone grading and acoustic sound build.</p>
+            <div class="project-meta-tags">
+              <span class="meta-pill"><span class="pill-label">Client:</span> Destination Wedding</span>
+              <span class="meta-pill"><span class="pill-label">Craft:</span> Edit · Colour · Sound</span>
+              <span class="meta-pill"><span class="pill-label">Time:</span> 2m 45s</span>
             </div>
-            <div class="project-info">
-              <div class="project-info-header">
-                <h3>A Story in Two</h3>
-                <span class="project-type">Wedding film</span>
-              </div>
-              <p>Emotion-led teaser with delicate skin-tone grading and acoustic sound build.</p>
-              <div class="project-meta-tags">
-                <span class="meta-pill"><span class="pill-label">Client:</span> [Destination Wedding]</span>
-                <span class="meta-pill"><span class="pill-label">Craft:</span> Edit · Colour · Sound</span>
-                <span class="meta-pill"><span class="pill-label">Time:</span> 2m 45s</span>
-              </div>
-            </div>
-          </button>
+          </div>
+        </button>
 
           <!-- PROJECT 2: Narrow Card (5 cols) - Cinematic Mood Film -->
           <!-- EDIT HERE: Replace data attributes with your real project details -->
@@ -340,11 +353,11 @@
             data-craft="[SERVICES: Scene Cutting · Neon Palette Grade · Ambience Mix]"
             data-duration="[DURATION: 4m 10s]"
             data-description="A mood-driven visual piece focused on contrast, deliberate pacing, rain-soaked neon reflections, and an immersive low-frequency score."
-            data-video="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ" aria-haspopup="dialog"
+            data-video="https://www.youtube.com/embed/lMAWFxpSGfc" aria-haspopup="dialog"
             aria-label="Open project details: After the Lights (Cinematic Mood Film)">
             <div class="project-image-box">
-              <img class="project-image" src="assets/thumbs/project-2.jpg"
-                alt="Atmospheric night street scene with umbrella, rain reflections, and neon signage" width="1280"
+              <img class="project-image" src="assets/thumbs/gif1.webp"
+                alt="Teaser thumnail image" width="1280"
                 height="720" loading="lazy">
             </div>
             <div class="project-card-top">
@@ -355,12 +368,6 @@
               <div class="project-info-header">
                 <h3>After the Lights</h3>
                 <span class="project-type">Cinematic</span>
-              </div>
-              <p>Atmosphere in every frame: neon contrasts and slow-burn narrative tension.</p>
-              <div class="project-meta-tags">
-                <span class="meta-pill"><span class="pill-label">Client:</span> [Indie Director]</span>
-                <span class="meta-pill"><span class="pill-label">Craft:</span> Cut · Colour · Sound</span>
-                <span class="meta-pill"><span class="pill-label">Time:</span> 4m 10s</span>
               </div>
             </div>
           </button>
@@ -558,8 +565,11 @@
         <div class="about-copy reveal delay-1">
           <div class="section-kicker">03 / Behind the frames</div>
           <h2 class="section-title">Every cut tells<br><span>A Story.</span></h2>
-          <p>I'm Raja, a video editor passionate about turning raw footage into compelling visual stories. I specialize in crafting engaging edits through thoughtful pacing, seamless transitions, and carefully selected music and sound effects.</p>
-          <p>From emotional wedding films and dynamic social media reels to cinematic commercials, I focus on creating impactful videos that capture attention, communicate ideas, and connect with audiences.</p>
+          <p>I'm Raja, a video editor passionate about turning raw footage into compelling visual stories. I specialize
+            in crafting engaging edits through thoughtful pacing, seamless transitions, and carefully selected music and
+            sound effects.</p>
+          <p>From emotional wedding films and dynamic social media reels to cinematic commercials, I focus on creating
+            impactful videos that capture attention, communicate ideas, and connect with audiences.</p>
 
           <!-- Real-numbers block with data-count="0" placeholders -->
           <!-- EDIT HERE: Replace data-count="0" and the numbers below with your honest metrics -->
@@ -683,7 +693,9 @@
         <div class="contact-copy reveal">
           <div class="section-kicker">06 / Start a project</div>
           <h2 class="section-title">LET'S CREATE<br><span>SOMETHING GREAT</span></h2>
-          <p>Whether you're planning a wedding film, short-form reel batch, travel documentary, or commercial project, I'm here to help you create something great. Send your details below and I will get back to you within 24 hours.</p>
+          <p>Whether you're planning a wedding film, short-form reel batch, travel documentary, or commercial project,
+            I'm here to help you create something great. Send your details below and I will get back to you within 24
+            hours.</p>
 
           <div class="contact-details">
             <!-- EDIT HERE: Update email address -->

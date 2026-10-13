@@ -1061,7 +1061,7 @@ video {
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
-  max-height: 640px;
+  max-height: 800px;
   background: #151515;
   border-radius: var(--radius-sm);
   overflow: hidden;
@@ -1313,7 +1313,7 @@ video {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.45) 50%, rgba(0, 0, 0, 0.15) 100%);
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.45) 20%, rgba(0, 0, 0, 0.15) 20%);
   pointer-events: none;
   z-index: 1;
 }
@@ -2826,4 +2826,57 @@ video {
     animation: none !important;
     transform: none !important;
   }
+}
+.showreel-container:fullscreen { max-height: none; background: #000; }
+.showreel-container:fullscreen .showreel-video { object-fit: contain; }
+
+.vp-big {
+  position: absolute; inset: 0; margin: auto;
+  width: 84px; height: 84px; border-radius: 50%;
+  background: rgba(242, 43, 43, 0.9); color: #fff;
+  font-size: 1.8rem; z-index: 3;
+  transition: transform .25s, opacity .25s;
+}
+.vp-big:hover { transform: scale(1.08); }
+.vp-big.hide { opacity: 0; pointer-events: none; }
+
+.vp-controls {
+  position: absolute; left: 0; right: 0; bottom: 0; z-index: 4;
+  padding: 28px 18px 12px;
+  background: linear-gradient(0deg, rgba(0,0,0,.85), transparent);
+  transition: opacity .3s;
+}
+.vp-controls.idle { opacity: 0; }
+.showreel-container.idle { cursor: none; }
+
+.vp-row {
+  display: flex; align-items: center; gap: 12px;
+  font: 500 12px var(--font-mono); color: #fff;
+}
+.vp-row button, .vp-row select {
+  color: #fff; font: inherit; font-size: 14px;
+  padding: 6px 10px; border-radius: 6px;
+}
+.vp-row button:hover { background: var(--red); }
+.vp-row select { background: rgba(255,255,255,.12); border: 0; }
+.vp-row select option { color: #111; }
+.vp-spacer { flex: 1; }
+
+.vp-controls input[type="range"] {
+  -webkit-appearance: none; appearance: none;
+  height: 4px; border-radius: 4px; cursor: pointer;
+  background: linear-gradient(90deg, var(--red) var(--fill, 0%), rgba(255,255,255,.3) var(--fill, 0%));
+}
+#vpSeek { width: 100%; margin-bottom: 10px; }
+#vpVol { width: 90px; }
+.vp-controls input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 14px; height: 14px;
+  border-radius: 50%; background: #fff;
+}
+.vp-controls input[type="range"]::-moz-range-thumb {
+  width: 14px; height: 14px; border: 0; border-radius: 50%; background: #fff;
+}
+
+@media (max-width: 650px) {
+  #vpVol, #vpVolText, #vpPip { display: none; }
 }

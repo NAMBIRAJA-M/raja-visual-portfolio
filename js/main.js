@@ -742,3 +742,201 @@
     });
   }
 })();
+(function () {
+  const box = document.getElementById('vp');
+  if (!box) return;
+
+  const v = document.getElementById('vpVideo');
+  const big = document.getElementById('vpBig');
+  const unmuteBtn = document.getElementById('vpUnmute');
+  const controls = document.getElementById('vpControls');
+  const playBtn = document.getElementById('vpPlay');
+  const muteBtn = document.getElementById('vpMute');
+  const seek = document.getElementById('vpSeek');
+  const vol = document.getElementById('vpVol');
+  const volText = document.getElementById('vpVolText');
+  const timeEl = document.getElementById('vpTime');
+  const speed = document.getElementById('vpSpeed');
+  const pip = document.getElementById('vpPip');
+  const fs = document.getElementById('vpFs');
+
+  let ctx, gain, lastVol = 1, idleTimer;
+  let userPaused = false;
+  let isVisible = false;
+
+  const fmt = s => {
+    if (!isFinite(s)) return '0:00';
+    const m = Math.floor(s / 60), sec = Math.floor(s % 60);
+    return m + ':' + String(sec).padStart(2, '0');
+  };
+  const fill = el => el.style.setProperty('--fill', (el.value - el.min) / (el.max - el.min) * 100 + '%');
+
+  /* Volume with boost up to 200% (starts after a user click) */
+  function initAudio() {
+    if (ctx) return;
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) return;
+    ctx = new AC();
+    gain = ctx.createGain();
+    ctx.createMediaElementSource(v).connect(gain).connect(ctx.destination);
+    applyVolume();
+  }
+
+  function applyVolume() {
+    const val = parseFloat(vol.value);
+    if (gain) { v.volume = 1; gain.gain.value = val; }
+    else { v.volume = Math.min(val, 1); }
+    volText.textContent = Math.round(val * 100) + '%';
+    muteBtn.textContent = (v.muted || val === 0) ? '🔇' : '🔊';
+    fill(vol);
+  }
+
+  /* Play / pause */
+  function toggle() {
+    initAudio();
+    if (ctx && ctx.state === 'suspended') ctx.resume();
+    if (v.paused) { userPaused = false; v.play(); }
+    else { userPaused = true; v.pause(); }
+  }
+  playBtn.addEventListener('click', toggle);
+  big.addEventListener('click', toggle);
+  v.addEventListener('click', toggle);
+
+  v.addEventListener('play', () => {
+    playBtn.textContent = '❚❚';
+    big.classList.add('hide');
+    wake();
+  });
+  v.addEventListener('pause', () => {
+    playBtn.textContent = '▶';
+    big.classList.remove('hide');
+    wake();
+  });
+  v.addEventListener('ended', () => {
+    playBtn.textContent = '▶';
+    big.classList.remove('hide');
+  });
+
+  /* Seek and time */
+  v.addEventListener('loadedmetadata', () => {
+    timeEl.textContent = '0:00 / ' + fmt(v.duration);
+  });
+  v.addEventListener('timeupdate', () => {
+    if (!v.duration) return;
+    seek.value = (v.currentTime / v.duration) * 100;
+    fill(seek);
+    timeEl.textContent = fmt(v.currentTime) + ' / ' + fmt(v.duration);
+  });
+  seek.addEventListener('input', () => {
+    v.currentTime = (seek.value / 100) * v.duration;
+    fill(seek);
+  });
+
+  /* Volume and mute */
+  function toggleMute() {
+    initAudio();
+    if (ctx && ctx.state === 'suspended') ctx.resume();
+    if (v.muted || parseFloat(vol.value) === 0) {
+      v.muted = false;
+      if (parseFloat(vol.value) === 0) vol.value = lastVol || 1;
+    } else {
+      lastVol = vol.value;
+      v.muted = true;
+    }
+    applyVolume();
+  }
+  muteBtn.addEventListener('click', toggleMute);
+  unmuteBtn.addEventListener('click', toggleMute);
+
+  vol.addEventListener('input', () => {
+    initAudio();
+    if (v.muted) v.muted = false;
+    applyVolume();
+  });
+
+  v.addEventListener('volumechange', () => {
+    unmuteBtn.classList.toggle('hide', !v.muted);
+    muteBtn.textContent = (v.muted || parseFloat(vol.value) === 0) ? '🔇' : '🔊';
+  });
+
+  /* Speed, PiP, fullscreen */
+  speed.addEventListener('change', () => {
+    v.playbackRate = parseFloat(speed.value);
+  });
+
+  pip.addEventListener('click', async () => {
+    try {
+      if (document.pictureInPictureElement) await document.exitPictureInPicture();
+      else if (document.pictureInPictureEnabled) await v.requestPictureInPicture();
+    } catch (e) {}
+  });
+
+  function toggleFs() {
+    if (document.fullscreenElement) document.exitFullscreen();
+    else if (box.requestFullscreen) box.requestFullscreen();
+    else if (box.webkitRequestFullscreen) box.webkitRequestFullscreen();
+    else if (v.webkitEnterFullscreen) v.webkitEnterFullscreen(); // iPhone
+  }
+  fs.addEventListener('click', toggleFs);
+  v.addEventListener('dblclick', toggleFs);
+
+  /* Auto-hide controls while playing */
+  function wake() {
+    controls.classList.remove('idle');
+    box.classList.remove('idle');
+    clearTimeout(idleTimer);
+    if (!v.paused) {
+      idleTimer = setTimeout(() => {
+        controls.classList.add('idle');
+        box.classList.add('idle');
+      }, 2500);
+    }
+  }
+  ['mousemove', 'touchstart', 'keydown'].forEach(e => box.addEventListener(e, wake));
+
+  /* Keyboard shortcuts */
+  box.addEventListener('keydown', e => {
+    if (['INPUT', 'SELECT'].includes(e.target.tagName) && e.key !== 'f' && e.key !== 'm') return;
+    const k = e.key.toLowerCase();
+    if (k === ' ' || k === 'k') { e.preventDefault(); toggle(); }
+    else if (k === 'm') toggleMute();
+    else if (k === 'f') toggleFs();
+    else if (e.key === 'ArrowRight') v.currentTime += 5;
+    else if (e.key === 'ArrowLeft') v.currentTime -= 5;
+    else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      vol.value = Math.min(2, +vol.value + 0.1);
+      applyVolume();
+    }
+    else if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      vol.value = Math.max(0, +vol.value - 0.1);
+      applyVolume();
+    }
+  });
+
+  /* Autoplay (muted) when visible, pause when out of view */
+  v.muted = true;
+
+  function tryPlay() {
+    if (userPaused || !isVisible || !v.paused) return;
+    v.play().catch(() => {});
+  }
+
+  new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      isVisible = entry.isIntersecting;
+      if (isVisible) tryPlay();
+      else if (!v.paused) v.pause();
+    });
+  }, { threshold: 0.4 }).observe(box);
+
+  /* Fallback if the browser blocked autoplay */
+  v.addEventListener('canplay', tryPlay);
+  ['touchstart', 'pointerdown', 'scroll'].forEach(evt =>
+    window.addEventListener(evt, tryPlay, { passive: true })
+  );
+
+  fill(seek);
+  applyVolume();
+})();
