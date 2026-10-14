@@ -251,7 +251,7 @@
         </div>
 
         <div class="showreel-container reveal delay-1" id="vp" tabindex="0">
-          <video id="vpVideo" class="showreel-video" src="assets/showreelintro.mp4" poster="assets/hero.png"
+          <video id="vpVideo" class="showreel-video" src="assets/videos/show-reel-intro.mp4" poster="assets/hero.png"
             preload="auto" loop playsinline></video>
 
           <button class="vp-big" id="vpBig" type="button" aria-label="Play video">▶</button>
@@ -298,10 +298,10 @@
         <div class="work-filters reveal" role="toolbar" aria-label="Filter portfolio projects">
           <button class="filter active" data-filter="all" aria-pressed="true" type="button">All work</button>
           <button class="filter" data-filter="wedding" aria-pressed="false" type="button">Wedding films</button>
-          <button class="filter" data-filter="cinematic" aria-pressed="false" type="button">Cinematic</button>
-          <button class="filter" data-filter="reels" aria-pressed="false" type="button">Reels & social</button>
-          <button class="filter" data-filter="travel" aria-pressed="false" type="button">Travel</button>
-          <button class="filter" data-filter="events" aria-pressed="false" type="button">Events & Brand</button>
+          <button class="filter" data-filter="celebration" aria-pressed="false" type="button">Celebration</button>
+          <button class="filter" data-filter="post-production" aria-pressed="false" type="button">Post production</button>
+          <!-- <button class="filter" data-filter="travel" aria-pressed="false" type="button">Travel</button> -->
+          <button class="filter" data-filter="creativity" aria-pressed="false" type="button">Creativity</button>
         </div>
 
         <!-- 12-Column Grid: Row 1 (7+5), Row 2 (5+7), Row 3 (7+5) -> 6 cards, 0 orphans! -->
@@ -309,56 +309,41 @@
 
           <!-- PROJECT 1: Wide Card (7 cols) - Wedding Teaser -->
           <!-- EDIT HERE: Replace data attributes with your real project details and YouTube/Vimeo embed URL -->
-          <button type="button" class="project-card wide reveal" data-category="wedding"
-          data-title="A Story in Two"
-          data-type="Wedding Teaser"
-          data-client="Destination Wedding, Udaipur"
-          data-craft="Narrative Edit · Skin-Tone Grading · Audio Sync"
-          data-duration="2m 45s"
-          data-description="A romantic, cinematic teaser built around intimate vows, music-led pacing, warm golden-hour skin tones, and an emotional crescendo."
-          data-video="https://www.youtube.com/embed/3RQ04AVkG24"
-          aria-haspopup="dialog"
-          aria-label="Open project details: A Story in Two (Wedding Teaser)">
-        
-          <div class="project-image-box">
-            <img class="project-image" src="assets/thumbs/project-1.jpg"
-              alt="Emotional bride and groom embrace during sunset cliffside wedding vows"
-              width="1280" height="720" loading="lazy">
-          </div>
-        
-          <div class="project-card-top">
-            <span class="project-index">01 / 06</span>
-            <span class="project-open" aria-hidden="true">↗</span>
-          </div>
-        
-          <div class="project-info">
-            <div class="project-info-header">
-              <h3>A Story in Two</h3>
-              <span class="project-type">Wedding film</span>
+          <button type="button" class="project-card wide reveal" data-category="wedding" data-title="A Love Story in frames"
+            data-type="Wedding Film" data-duration="30 sec"
+            data-description="A cinematic engagement film capturing the love, emotions, and unforgettable moments of a beautiful beginning."
+            data-video="assets/videos/engagement-teaser_.mp4" aria-haspopup="dialog"
+            aria-label="Open project details: A Love Story in frames">
+            <div class="project-image-box">
+              <video class="project-image" src="assets/thumbs/engaementthumbnail.mp4" aria-label="Engagement Full video"
+              width="1280" height="720" muted autoplay loop playsinline preload="metadata">
+              </video>
             </div>
-            <p>Emotion-led teaser with delicate skin-tone grading and acoustic sound build.</p>
-            <div class="project-meta-tags">
-              <span class="meta-pill"><span class="pill-label">Client:</span> Destination Wedding</span>
-              <span class="meta-pill"><span class="pill-label">Craft:</span> Edit · Colour · Sound</span>
-              <span class="meta-pill"><span class="pill-label">Time:</span> 2m 45s</span>
+
+            <div class="project-card-top">
+              <span class="project-index">01 / 06</span>
+              <span class="project-open" aria-hidden="true">↗</span>
             </div>
-          </div>
-        </button>
+
+            <div class="project-info">
+              <div class="project-info-header">
+                <h3>A Love Story in frames</h3>
+                <span class="project-type">Wedding film</span>
+              </div>
+            </div>
+          </button>
 
           <!-- PROJECT 2: Narrow Card (5 cols) - Cinematic Mood Film -->
           <!-- EDIT HERE: Replace data attributes with your real project details -->
-          <button type="button" class="project-card narrow reveal delay-1" data-category="cinematic"
-            data-title="After the Lights" data-type="Cinematic Mood Film"
-            data-client="[CLIENT: Indie Narrative Film / Director]"
-            data-craft="[SERVICES: Scene Cutting · Neon Palette Grade · Ambience Mix]"
-            data-duration="[DURATION: 4m 10s]"
-            data-description="A mood-driven visual piece focused on contrast, deliberate pacing, rain-soaked neon reflections, and an immersive low-frequency score."
+          <button type="button" class="project-card narrow reveal delay-1" data-category="wedding"
+            data-title="The Couple Teaser" data-type="Wedding Film"
+            data-duration="20 sec"
+            data-description="A high-impact teaser that builds anticipation through dynamic cuts, striking visuals, and a memorable opening to their special day."
             data-video="https://www.youtube.com/embed/lMAWFxpSGfc" aria-haspopup="dialog"
             aria-label="Open project details: After the Lights (Cinematic Mood Film)">
             <div class="project-image-box">
-              <img class="project-image" src="assets/thumbs/gif1.webp"
-                alt="Teaser thumnail image" width="1280"
-                height="720" loading="lazy">
+              <img class="project-image" src="assets/thumbs/jeromia_hersha_animatic.gif" alt="Teaser thumnail image"
+                width="1280" height="720" loading="lazy">
             </div>
             <div class="project-card-top">
               <span class="project-index">02 / 06</span>
@@ -366,59 +351,50 @@
             </div>
             <div class="project-info">
               <div class="project-info-header">
-                <h3>After the Lights</h3>
-                <span class="project-type">Cinematic</span>
+                <h3>The Couple Teaser</h3>
+                <span class="project-type">Wedding Film</span>
               </div>
             </div>
           </button>
 
           <!-- PROJECT 3: Narrow Card (5 cols) - Vertical 9:16 Reel -->
           <!-- EDIT HERE: Replace data attributes with your real vertical reel details -->
-          <button type="button" class="project-card narrow is-reel reveal" data-category="reels" data-is-reel="true"
-            data-title="Velocity & Flow" data-type="Vertical 9:16 Social Reel"
-            data-client="[CLIENT: Streetwear Apparel Brand / Creator]"
-            data-craft="[SERVICES: 9:16 Vertical Cut · Fast Rhythm · SFX Impact]" data-duration="[DURATION: 0m 32s]"
-            data-description="A short-form edit built for the mobile screen: explosive 3-second hook, beat-synced whip pans, and clean commercial polish."
-            data-video="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ" aria-haspopup="dialog"
-            aria-label="Open project details: Velocity & Flow (Vertical 9:16 Social Reel)">
+          <button type="button" class="project-card narrow is-reel reveal" data-category="post-production" data-is-reel="false"
+            data-title="Visual Enhance" data-type="Colour Correction"
+            data-duration="30 sec"
+            data-description="Transforming flat footage into balanced, natural visuals with refined tones, controlled contrast, and enhanced color depth."
+            data-video="https://www.youtube.com/embed/R5oH3EDzTys" aria-haspopup="dialog"
+            aria-label="Open project details: Visual Enhance(post-production)">
             <div class="project-image-box">
-              <img class="project-image" src="assets/thumbs/project-3.jpg"
-                alt="Vertical 9:16 street style model walking through sunlit city street" width="720" height="1280"
-                loading="lazy">
+              <video class="project-image" src="assets/thumbs/color-thumbnail.mp4" aria-label="Visual Enhancement"
+              width="1280" height="720" muted autoplay loop playsinline preload="metadata">
+            </video>
             </div>
             <div class="project-card-top">
               <span class="project-index">03 / 06</span>
-              <span class="reel-badge">📱 9:16 REEL</span>
               <span class="project-open" aria-hidden="true">↗</span>
             </div>
             <div class="project-info">
               <div class="project-info-header">
-                <h3>Velocity & Flow</h3>
-                <span class="project-type">Social reel</span>
+                <h3>Visual Enhance</h3>
+                <span class="project-type">Colour Correction</span>
               </div>
-              <p>Fast, focused, high retention mobile edit with rhythmic sound design.</p>
-              <div class="project-meta-tags">
-                <span class="meta-pill"><span class="pill-label">Client:</span> [Lifestyle Brand]</span>
-                <span class="meta-pill"><span class="pill-label">Craft:</span> 9:16 Edit · SFX</span>
-                <span class="meta-pill"><span class="pill-label">Time:</span> 0m 32s</span>
-              </div>
+  
             </div>
           </button>
 
           <!-- PROJECT 4: Wide Card (7 cols) - Travel Documentary Film -->
           <!-- EDIT HERE: Replace data attributes with your real project details -->
-          <button type="button" class="project-card wide reveal delay-1" data-category="travel"
-            data-title="The Long Way Home" data-type="Travel Film & Documentary"
-            data-client="[CLIENT: Adventure Travel Creator / Tourism]"
-            data-craft="[SERVICES: Narrative Structure · Landscape Grade · Foley Audio]"
-            data-duration="[DURATION: 5m 20s]"
-            data-description="A travel documentary using natural mountain ambience, immersive Foley sound design, wide establishing shots, and a restrained film print emulation."
-            data-video="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ" aria-haspopup="dialog"
-            aria-label="Open project details: The Long Way Home (Travel Film)">
+          <button type="button" class="project-card wide reveal delay-1" data-category="celebration"
+            data-title="The Birthday Chronicles" data-type="Celebration"
+            data-duration="53 sec"
+            data-description="A warm, energetic birthday highlight reel, edited with rhythmic cuts, vibrant color grading, and music-driven pacing to turn everyday moments into a lasting memory."
+            data-video="https://www.youtube.com/embed/KN7DrvFfe5M" aria-haspopup="dialog"
+            aria-label="Open project details:The Birthday Chronicles (Celebration)">
             <div class="project-image-box">
-              <img class="project-image" src="assets/thumbs/project-4.jpg"
-                alt="Vintage road trip convertible car winding through scenic mountain pass misty sunrise" width="1280"
-                height="720" loading="lazy">
+              <video class="project-image" src="assets/thumbs/birthdaythumbnal1.mp4" aria-label="Birthday Teaser"
+                width="1280" height="720" muted autoplay loop playsinline preload="metadata">
+              </video>
             </div>
             <div class="project-card-top">
               <span class="project-index">04 / 06</span>
@@ -426,30 +402,22 @@
             </div>
             <div class="project-info">
               <div class="project-info-header">
-                <h3>The Long Way Home</h3>
-                <span class="project-type">Travel film</span>
-              </div>
-              <p>Places, sound, and perspective: cinematic road documentary across alpine routes.</p>
-              <div class="project-meta-tags">
-                <span class="meta-pill"><span class="pill-label">Client:</span> [Travel Creator]</span>
-                <span class="meta-pill"><span class="pill-label">Craft:</span> Story · Grade · Foley</span>
-                <span class="meta-pill"><span class="pill-label">Time:</span> 5m 20s</span>
+                <h3>The Birthday Chronicles</h3>
+                <span class="project-type">Celebration</span>
               </div>
             </div>
           </button>
 
           <!-- PROJECT 5: Wide Card (7 cols) - Live Event Highlight -->
           <!-- EDIT HERE: Replace data attributes with your real project details -->
-          <button type="button" class="project-card wide reveal" data-category="events"
-            data-title="One Unforgettable Night" data-type="Music Festival & Live Event Film"
-            data-client="[CLIENT: Astral Sounds Music Festival]"
-            data-craft="[SERVICES: Multi-cam Concert Cut · Volumetric Light Grade · Bass Mix]"
-            data-duration="[DURATION: 3m 15s]"
-            data-description="A high-voltage event recap that captures crowd electricity, laser choreography, and stadium bass while keeping the storytelling tight and exhilarating."
-            data-video="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ" aria-haspopup="dialog"
-            aria-label="Open project details: One Unforgettable Night (Event Film)">
+          <button type="button" class="project-card wide reveal" data-category="creativity"
+            data-title="Creativity in motion" data-type="Creative showcase"
+            data-duration=" 06 sec"
+            data-description="Recreating a Netflix-inspired promo with dramatic visuals, bold typography, cinematic transitions, and impactful sound design."
+            data-video="https://www.youtube.com/embed/5rSR9t0Ar-g" aria-haspopup="dialog"
+            aria-label="Open project details: Creativity in motion (creativity)">
             <div class="project-image-box">
-              <img class="project-image" src="assets/thumbs/project-5.jpg"
+              <img class="project-image" src="assets/thumbs/netflix_motion.gif"
                 alt="Concert stage lighting with red and amber volumetric light beams cheering crowd silhouette"
                 width="1280" height="720" loading="lazy">
             </div>
@@ -459,30 +427,22 @@
             </div>
             <div class="project-info">
               <div class="project-info-header">
-                <h3>One Unforgettable Night</h3>
-                <span class="project-type">Event film</span>
-              </div>
-              <p>Every beat and crowd reaction captured in high-energy multi-cam rhythm.</p>
-              <div class="project-meta-tags">
-                <span class="meta-pill"><span class="pill-label">Client:</span> [Festival Agency]</span>
-                <span class="meta-pill"><span class="pill-label">Craft:</span> Multi-cam · Grade · Bass Mix</span>
-                <span class="meta-pill"><span class="pill-label">Time:</span> 3m 15s</span>
+                <h3>Creativity in motion</h3>
+                <span class="project-type">Creative showcase</span>
               </div>
             </div>
           </button>
 
           <!-- PROJECT 6: Narrow Card (5 cols) - Commercial Film -->
           <!-- EDIT HERE: Replace data attributes with your real project details -->
-          <button type="button" class="project-card narrow reveal delay-1" data-category="events"
-            data-title="Noir Elegance" data-type="Luxury Brand Commercial"
-            data-client="[CLIENT: Haute Perfumery Maison]"
-            data-craft="[SERVICES: Precision Cut · 2383 Film Print LUT · Custom Sound]"
-            data-duration="[DURATION: 1m 00s]"
-            data-description="A premium product spot featuring deep shadows, striking red highlights, and subtle textural sound design engineered for high conversion."
-            data-video="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ" aria-haspopup="dialog"
-            aria-label="Open project details: Noir Elegance (Brand Commercial)">
+          <button type="button" class="project-card narrow reveal delay-1 card-5" data-category="post-production"
+            data-title="Where Rhythm lives" data-type="Sound Design"
+            data-duration="30 sec"
+            data-description="Crafting immersive audio experiences with layered sound effects, precise timing, and impactful sonic details."
+            data-video="https://www.youtube.com/embed/BEMzw16uH8I" aria-haspopup="dialog"
+            aria-label="Open project details:Where Rhythm lives (Sound Design)">
             <div class="project-image-box">
-              <img class="project-image" src="assets/thumbs/project-6.jpg"
+              <img class="project-image" src="assets/thumbs/sound_design_card_animatic.gif"
                 alt="Minimalist perfume commercial still with crimson red rim lighting and soft fog" width="1280"
                 height="720" loading="lazy">
             </div>
@@ -492,14 +452,8 @@
             </div>
             <div class="project-info">
               <div class="project-info-header">
-                <h3>Noir Elegance</h3>
-                <span class="project-type">Commercial</span>
-              </div>
-              <p>Luxury product story with deep black levels and intentional contrast control.</p>
-              <div class="project-meta-tags">
-                <span class="meta-pill"><span class="pill-label">Client:</span> [Luxury Brand]</span>
-                <span class="meta-pill"><span class="pill-label">Craft:</span> Commercial Cut · LUT Design</span>
-                <span class="meta-pill"><span class="pill-label">Time:</span> 1m 00s</span>
+                <h3>Where Rhythm lives</h3>
+                <span class="project-type">Sound Design</span>
               </div>
             </div>
           </button>
@@ -523,13 +477,13 @@
         <div class="grade-slider-wrap reveal delay-1" id="gradeSlider"
           aria-label="Interactive before and after color grade comparison">
           <!-- Graded Image (Right/Base) -->
-          <img class="grade-after" src="assets/grade-after.jpg"
+          <img class="grade-after" src="assets/thumbs/animatic-slider-after.jpeg"
             alt="After: Rich cinematic colour graded film still with vibrant contrast and film print tone" width="1280"
             height="720" loading="lazy">
 
           <!-- Flat Log Image (Left/Overlay clipped) -->
           <div class="grade-before-container" id="gradeBefore">
-            <img src="assets/grade-before.jpg"
+            <img src="assets/thumbs/animatic-slider-before.png"
               alt="Before: Flat uncorrected camera Log profile with lifted blacks and muted saturation" width="1280"
               height="720" loading="lazy">
             <div class="grade-handle" aria-hidden="true">⇄</div>
@@ -603,8 +557,7 @@
             <div class="section-kicker">04 / Craft & Expertise</div>
             <h2 class="section-title">Made for your<br><span>kind of story.</span></h2>
           </div>
-          <p class="section-description">End-to-end post-production services tailored for filmmakers, couples, brands,
-            and content creators.</p>
+          <p class="section-description">Professional video editing, cinematic storytelling, color grading, and sound design for events, brands, advertisements, and creative projects.</p>
         </div>
 
         <div class="services-grid">
@@ -797,8 +750,6 @@
       </div>
 
       <div class="modal-meta">
-        <span><em>Client:</em> <span id="modalMetaClient">[Client]</span></span>
-        <span><em>Services:</em> <span id="modalMetaCraft">Edit · Colour · Sound</span></span>
         <span><em>Duration:</em> <span id="modalMetaDuration">00:00</span></span>
       </div>
 

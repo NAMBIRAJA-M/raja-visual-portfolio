@@ -1444,15 +1444,15 @@ video {
 }
 
 /* 9:16 Vertical Reel Card modifier */
-.project-card.is-reel {
+/* .project-card.is-reel {
   min-height: 480px;
-}
+} */
 
-.project-card.is-reel .project-image {
+/* .project-card.is-reel .project-image {
   object-position: center;
-}
+} */
 
-.project-card.is-reel .reel-badge {
+/* .project-card.is-reel .reel-badge {
   font-family: var(--font-mono);
   font-size: 0.75rem;
   background: var(--red);
@@ -1464,7 +1464,7 @@ video {
   display: inline-flex;
   align-items: center;
   gap: 5px;
-}
+} */
 
 /* --------------------------------------------------------------------------
    11. BEFORE / AFTER COLOUR GRADE SLIDER (Step 2 - DaVinci Resolve Skill)
@@ -2413,11 +2413,11 @@ video {
   border: 1px solid var(--line);
 }
 
-.modal-video-wrapper.is-reel-video {
+/* .modal-video-wrapper.is-reel-video {
   max-width: 380px;
   aspect-ratio: 9 / 16;
   margin-inline: auto;
-}
+} */
 
 .modal-video-wrapper iframe {
   width: 100%;
